@@ -69,27 +69,30 @@ Read.table()函数可以读取一个纯文本文件，read.table(file=要读入�
 ```
 x=read.table("input.txt")   
 write.tale(x,file="H:/Rdata/newfile.txt")
-```   
+```
 也可以使用sep参数确定分隔符   
-write.table(x,file = "H:/RData/newfile.csv",sep=",")   
+`write.table(x,file = "H:/RData/newfile.csv",sep=",")`
 这样就等同于做了一次数据转换，将文本数据转变成了表格数据   
 每一次加载数据，R会自动给每一行数据添加行号，为避免多次打开数据导致行号重复，可使用row.names参数   
-write.table(x,file = "H:/RData/newfile.csv",sep=",",row.names = F)   
+`write.table(x,file = "H:/RData/newfile.csv",sep=",",row.names = F)`   
 R会覆盖同名文件，使用append参数可以添加同名参数   
 R可以直接写入压缩文件：   
- write.table(mtcars,gzfile("newfile.txt.gz"))   
- 将excel文件另存为csv文件，再使用read.csv()打开   
+`write.table(mtcars,gzfile("newfile.txt.gz"))`   
+将excel文件另存为csv文件，再使用read.csv()打开   
 如:   
-read.csv("H:/RData/mtcars.csv",header = T)   
-或者将数据复制到剪贴板，使用readclipboard()函数将数据导入R中，在R中打开：   
-readClipboard()   
-read.table("clipboard",sep = '\t',header = T)   
+`read.csv("H:/RData/mtcars.csv",header = T)`   
+或者将数据复制到剪贴板，使用readclipboard()函数将数据导入R中，在R中打开：readClipboard()   
+`read.table("clipboard",sep = '\t',header = T)`   
 在R中也提供了很多包用于直接读写excel数据    
 比如：xlconnect包（这个包依赖于JAVA，需要有java的环境），如果该R包无法安装，可以使用openxlsx包进行读取，如下：   
+```
 library(openxlsx)   
-read.xlsx("H:/RData/data.xlsx",sheet = 1)   
+read.xlsx("H:/RData/data.xlsx",sheet = 1)
+```
 还可以使用openxlsx包的函数创建并写入新的excel文件，代码如下：   
+```
 wb <- createWorkbook()   
 addWorksheet(wb,sheetName = 1)   
 x <- mtcars  
-writeData(wb,sheet = 1,x,startCol = 1,startRow = 1)   
+writeData(wb,sheet = 1,x,startCol = 1,startRow = 1)
+```
