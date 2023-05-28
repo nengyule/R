@@ -53,28 +53,23 @@
 2. 通过读取存储在外部文件上的数据   
 3. 通过访问数据库系统来获取数据   
 
-R读取文件   
-纯文本文件（.csv/.txt）：   
-通常使用逗号，也可以使用空白分割   
+- R读取文件   
+&emsp;&emsp;纯文本文件（.csv/.txt）：通常使用逗号，也可以使用空白分割   
 Read.table()函数可以读取一个纯文本文件，read.table(file=要读入的文件的名称；sep=指定文件使用的分隔符，默认是空白分割；header=代表在读取数据之后是否将数据的第一行作为变量的名称，而不是当成具体的值来处理，如果是，header=T，不是，header=F；skip=表示读取参数时，跳过部分内容，比如说可以跳过一些介绍性文字；nrows=用于读取文件的行数；na.strings=用于处理缺失值的信息)   
-x <- read.table(file = "input.txt")#需要在工作目录下才可以直接输入名称   
-如果不在工作目录下，可以利用setwd()函数来更改R的工作目录，或者使用文件的全路径   
-可以使用head()和tail()函数读取文件的前几行或者是后几行数据，可以通过函数中选项参数n的数值来确定显示的行数   
-使用sep可以指定对数据进行分割，使数据格式变得整洁   
-如果提前知道文件格式，也可以直接用read.csv()进行直接读取   
-在此基础上使用skip和nrows两个参数相结合，就可以读取任意部分的数据，比如读取上述文件的第10-50行数据：   
-read.table("input 1.txt",header = T,skip=10,nrows = 50)   
-R在读取数据时，字符串数据会被默认读取成因子型数据   
-如果一个纯文本文件并不在本机上，R可以支持读取网络文件，可以通过一些协议进行读取，只要将read.table()函数的选项参数file=文件的网络链接即可。R会将文件下载到本地。
-如何读取非文本文件？   
-我们可以使用XML包进行读取，里面包含一个readHTMLTable()函数，可以用于读取网页中的数据。   
-R中的foreign包可以帮助导入其他软件的数据   
-或者可以直接导入剪切板的内容，直接将read.table()函数选项参数改为clipboard即可   
-R可以直接读取压缩文件，并不需要解压缩   
-使用write.table()函数可以将数据写入文件，函数中，write.table(x=写入的数据，file=数据的存储路径及格式”)   
-如：   
+&emsp;&emsp;x <- read.table(file = "input.txt")#需要在工作目录下才可以直接输入名称   
+&emsp;&emsp;如果不在工作目录下，可以利用setwd()函数来更改R的工作目录，或者使用文件的全路径，可以使用head()和tail()函数读取文件的前几行或者是后几行数据，可以通过函数中选项参数n的数值来确定显示的行数，使用sep可以指定对数据进行分割，使数据格式变得整洁，如果提前知道文件格式，也可以直接用read.csv()进行直接读取   
+&emsp;&emsp;在此基础上使用skip和nrows两个参数相结合，就可以读取任意部分的数据，比如读取上述文件的第10-50行数据：   
+&emsp;&emsp;read.table("input 1.txt",header = T,skip=10,nrows = 50)   
+&emsp;&emsp;R在读取数据时，字符串数据会被默认读取成因子型数据   
+&emsp;&emsp;如果一个纯文本文件并不在本机上，R可以支持读取网络文件，可以通过一些协议进行读取，只要将read.table()函数的选项参数file=文件的网络链接即可。R会将文件下载到本地。   
+- 如何读取非文本文件？   
+&emsp;&emsp;我们可以使用XML包进行读取，里面包含一个readHTMLTable()函数，可以用于读取网页中的数据。R中的foreign包可以帮助导入其他软件的数据，或者可以直接导入剪切板的内容，直接将read.table()函数选项参数改为clipboard即可。   
+&emsp;&emsp;R可以直接读取压缩文件，并不需要解压缩，使用write.table()函数可以将数据写入文件，函数中，write.table(x=写入的数据，file=数据的存储路径及格式”)   
+如：
+```
 x=read.table("input.txt")   
-write.tale(x,file="H:/Rdata/newfile.txt")   
+write.tale(x,file="H:/Rdata/newfile.txt")
+```   
 也可以使用sep参数确定分隔符   
 write.table(x,file = "H:/RData/newfile.csv",sep=",")   
 这样就等同于做了一次数据转换，将文本数据转变成了表格数据   
