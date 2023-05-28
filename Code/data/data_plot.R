@@ -10,20 +10,25 @@ library(gtable)
 library(grid)
 library(ggpubr)
 
+data_read <- function(p,s = 0){
+	data <- read.csv(p,header = F,skip = s)
+	names <- data[1,]
+	data <- data[-1,]
+	names(data) <- names
+	return(data)
+}
 
-mp9 <- read.csv("D:/software_data/document/R/D8/MP9.csv",header=F,fill=T,skip=1)
-rname <- mp9[1,]
-mp9 <- mp9[-1,]
-names(mp9) <- rname
-Mp9 <- melt(mp9,id=(c("site","serialnumber","config","build","starttime","endtime","status","test failing")))
-names(Mp9) <- c("site","serialnumber","config","build","starttime","endtime","status","test failing","MP9 Item","Item Value")
+#data <- read.csv("KA1.csv",header=F,fill=T,skip=1)
+data <- data_read("KA1.csv",1)
+data_transpose <- melt(data,id=(c("site","serialnumber","config","build","starttime","endtime","status","test failing")))
+names(data_transpose) <- c("site","serialnumber","config","build","starttime","endtime","status","test failing","MP9 Item","Item Value")
 
 # 绘图
-plt <- ggplot(mp9,aes(x=mp9$config,
-               y=mp9$item2,
+plt <- ggplot(data,aes(x=data$config,
+               y=data$item2,
                fill=config))+
   xlab("Config")+
-  ylab("MP9 Item")+
+  ylab("Item")+
   stat_boxplot(geom = "errorbar",
                width=0.3)+
   geom_boxplot(alpha = 1,
