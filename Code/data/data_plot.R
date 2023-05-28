@@ -24,13 +24,10 @@ data_transpose <- melt(data,id=(c("site","serialnumber","config","build","startt
 names(data_transpose) <- c("site","serialnumber","config","build","starttime","endtime","status","test failing","MP9 Item","Item Value")
 
 # 绘图
-plt <- ggplot(data,aes(x=data$config,
-               y=data$item2,
-               fill=config))+
+plt <- ggplot(data,aes(x=data$config,y=data$item2,fill=config))+
   xlab("Config")+
   ylab("Item")+
-  stat_boxplot(geom = "errorbar",
-               width=0.3)+
+  stat_boxplot(geom = "errorbar",width=0.3)+
   geom_boxplot(alpha = 1,
                outlier.color = "black",
                position=position_dodge(width=0.75))+
