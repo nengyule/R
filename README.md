@@ -35,8 +35,8 @@
 &emsp;&emsp;矩阵和数据框的不同，矩阵必须是同一数据类型，数据框每一列必须为同一类型，每一行可以不同   
 &emsp;&emsp;数据框可以通过data.frame()函数进行创建；   
 &emsp;&emsp;数据框的访问：直接使用索引；直接使用名称进行索引；   
-&emsp;&emsp;可以使用attach()将数据集存进R的内存，这样就便于访问；
-&emsp;&emsp;使用完之后可以使用detach()函数取消加载；
+&emsp;&emsp;可以使用attach()将数据集存进R的内存，这样就便于访问；   
+&emsp;&emsp;使用完之后可以使用detach()函数取消加载；   
 &emsp;&emsp;数据框也可以使用双中括号的方式进行访问，返回的是向量而不是列表。
 ## 因子
 &emsp;&emsp;在R中变量可以分为名义型变量、有序型变量、连续型变量，名义型变量没有顺序的区别，有序型变量介于二者之间，不同值之间有顺序关系。   
@@ -102,3 +102,7 @@ addWorksheet(wb,sheetName = 1)
 x <- mtcars  
 writeData(wb,sheet = 1,x,startCol = 1,startRow = 1)
 ```
+
+##包的使用
++ reshape2
+melt 宽数据变成长数据，逆转置melt(data,id=(c("site","serialnumber","config","build","starttime","endtime","status","test failing")))
